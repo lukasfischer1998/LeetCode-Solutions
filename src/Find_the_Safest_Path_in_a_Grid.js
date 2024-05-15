@@ -122,7 +122,69 @@ function maximumSafenessFactor(grid) {
   const distances = calculateDistances(grid, n);
   return calculateMaxSafenessFactor(distances, n);
 }
+/*SOLUTION WORKING IN TIME
+var maximumSafenessFactor = function(grid) {
+  let safeness = getSafeness(grid), n = grid.length;
+  let low = 0, high = n * n;
+  while (low < high) {
+    let mid = Math.ceil((low + high) / 2);
+    if (isEnough(safeness, mid)) low = mid;
+    else high = mid - 1;
+  }
+  return low;
+};
 
+function isEnough(safeness, minSafeness) {
+  let n = safeness.length, directions = [[-1, 0], [0, 1], [1, 0], [0, -1]];
+  if (safeness[0][0] < minSafeness || safeness[n - 1][n - 1] < minSafeness) return false;
+  let seen = Array(n).fill(0).map(() => Array(n).fill(false));
+  let queue = [[0, 0]];
+  seen[0][0] = true;
+  while (queue.length) {
+    let [row, col] = queue.shift();
+    if (row === n - 1 && col === n - 1) return true;
+    for (let [x, y] of directions) {
+      let newRow = row + x, newCol = col + y;
+      if (newRow < 0 || newRow >= n || newCol < 0 || newCol >= n) continue;
+      if (seen[newRow][newCol] || safeness[newRow][newCol] < minSafeness) continue;
+      seen[newRow][newCol] = true;
+      queue.push([newRow, newCol]);
+    }
+  }
+  return false;
+}
+
+function getSafeness(grid) {
+  const directions = [[-1, 0], [0, 1], [1, 0], [0, -1]];
+  let n = grid.length, queue = [];
+  let safeness = Array(n).fill(0).map(() => Array(n).fill(Infinity));
+  for (let i = 0; i < n; i++) {
+    for (let j = 0; j < n; j++) {
+      if (grid[i][j] === 1) { 
+        safeness[i][j] = 0;
+        queue.push([i, j]);
+      }
+    }
+  }
+  let steps = 1;
+  while (queue.length) {
+    let next = [];
+    while (queue.length) {
+      let [row, col] = queue.pop();
+      for (let [x, y] of directions) {
+        let newRow = row + x, newCol = col + y;
+        if (newRow < 0 || newRow >= n || newCol < 0 || newCol >= n) continue;
+        if (safeness[newRow][newCol] !== Infinity) continue;
+        safeness[newRow][newCol] = steps;
+        next.push([newRow, newCol]);
+      }
+    }
+    queue = next;
+    steps++;
+  }
+  return safeness;
+}
+*/
 // Test cases
 console.log(
   maximumSafenessFactor([
