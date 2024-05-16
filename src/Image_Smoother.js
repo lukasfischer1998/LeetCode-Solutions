@@ -90,7 +90,7 @@ var imageSmoother = function (img) {
         count = 9;
       }
 
-      // Berechne den Durchschnitt und weise ihn der entsprechenden Zelle in der Ergebnismatrix zu
+      // Average
       result[i][j] = Math.floor(sum / count);
     }
   }
