@@ -32,6 +32,9 @@ Thank you for considering contributing to this repository! Your contributions he
 
 - **Continuous Integration**: Ensure that your code passes any automated tests or checks set up for the repository.
 
+## Code of Conduct
+
+Please note that this repository follows the [Code of Conduct](CODE_OF_CONDUCT.md). Be respectful and considerate of others' contributions and opinions.
 
 ## Get Help
 
