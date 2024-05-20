@@ -69,7 +69,7 @@ class Solution:
         return total_sum
 
 
-# Beispielaufrufe
+# Testcases
 sol = Solution()
 print(sol.subsetXORSum([1, 3]))  # Ouput = 6
 print(sol.subsetXORSum([5, 1, 6]))  # Ouput = 28
